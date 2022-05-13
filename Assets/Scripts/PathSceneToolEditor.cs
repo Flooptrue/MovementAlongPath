@@ -27,17 +27,11 @@ public class PathSceneToolEditor : Editor
     {
         using var check = new EditorGUI.ChangeCheckScope();
 
-        if (check.changed == false)
-        {
-            return;
-        }
-
-        if (_isSubscribed == false)
+        if (check.changed)
         {
             Subscribe();
+            UpdateAutomatically();
         }
-
-        UpdateAutomatically();
     }
 
     private void UpdateManually()
@@ -88,10 +82,9 @@ public class PathSceneToolEditor : Editor
 
     private void Subscribe()
     {
-        if (_pathTool.PathCreator != null)
+        if (_isSubscribed == false && _pathTool.PathCreator != null)
         {
             _isSubscribed                     =  true;
-            _pathTool.PathCreator.pathUpdated -= UpdateAutomatically;
             _pathTool.PathCreator.pathUpdated += UpdateAutomatically;
         }
     }
