@@ -16,7 +16,7 @@ public class PathSceneToolEditor : Editor
     {
         DrawDefaultInspector();
         HandleChange();
-        
+
         if (GUILayout.Button("Manual Update"))
         {
             UpdateManually();
@@ -26,12 +26,12 @@ public class PathSceneToolEditor : Editor
     private void HandleChange()
     {
         using var check = new EditorGUI.ChangeCheckScope();
-        
+
         if (check.changed == false)
         {
-            return; 
+            return;
         }
-            
+
         if (_isSubscribed == false)
         {
             Subscribe();
@@ -73,11 +73,8 @@ public class PathSceneToolEditor : Editor
         _pathTool           =  (PathSceneTool)target;
         _pathTool.Destroyed += OnToolDestroyed;
 
-        if (_pathTool.PathCreator != null)
-        {
-            Subscribe();
-            TriggerUpdate();
-        }
+        Subscribe();
+        TriggerUpdate();
     }
 
     private void OnToolDestroyed()
