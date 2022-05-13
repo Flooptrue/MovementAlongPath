@@ -22,7 +22,6 @@ public class PathSceneToolEditor : Editor
             {
                 if (_isSubscribed == false)
                 {
-                    TryFindPathCreator();
                     Subscribe();
                 }
 
@@ -35,7 +34,7 @@ public class PathSceneToolEditor : Editor
 
         if (GUILayout.Button("Manual Update"))
         {
-            if (TryFindPathCreator())
+            if (_pathTool.PathCreator != null)
             {
                 TriggerUpdate();
                 SceneView.RepaintAll();
@@ -64,7 +63,7 @@ public class PathSceneToolEditor : Editor
         _pathTool           =  (PathSceneTool)target;
         _pathTool.Destroyed += OnToolDestroyed;
 
-        if (TryFindPathCreator())
+        if (_pathTool.PathCreator != null)
         {
             Subscribe();
             TriggerUpdate();
@@ -87,22 +86,5 @@ public class PathSceneToolEditor : Editor
             _pathTool.PathCreator.pathUpdated -= OnPathModified;
             _pathTool.PathCreator.pathUpdated += OnPathModified;
         }
-    }
-
-    private bool TryFindPathCreator()
-    {
-        if (_pathTool.PathCreator == null)
-        {
-            if (_pathTool.GetComponent<PathCreator>() != null)
-            {
-                _pathTool.PathCreator = _pathTool.GetComponent<PathCreator>();
-            }
-            else if (FindObjectOfType<PathCreator>())
-            {
-                _pathTool.PathCreator = FindObjectOfType<PathCreator>();
-            }
-        }
-
-        return _pathTool.PathCreator != null;
     }
 }

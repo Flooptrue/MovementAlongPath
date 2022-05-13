@@ -2,7 +2,7 @@
 using PathCreation;
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteInEditMode, RequireComponent(typeof(PathCreator))]
 public abstract class PathSceneTool : MonoBehaviour
 {
     #region PublicAPI
@@ -12,6 +12,15 @@ public abstract class PathSceneTool : MonoBehaviour
     public void TriggerUpdate()
     {
         PathUpdated();
+    }
+
+    #endregion
+
+    #region Construction
+
+    private void Awake()
+    {
+        PathCreator = GetComponent<PathCreator>();
     }
 
     #endregion
