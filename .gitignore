@@ -62,5 +62,5 @@ crashlytics-build.properties
 .idea
 **/ProjectSettings/RiderScriptEditorPersistedState.asset
 
-UserSettings/**
+UserSettings
 
