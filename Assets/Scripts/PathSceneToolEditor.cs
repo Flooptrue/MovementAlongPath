@@ -12,6 +12,8 @@ public class PathSceneToolEditor : Editor
 
     #endregion
 
+    #region Unity Methods
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -22,6 +24,19 @@ public class PathSceneToolEditor : Editor
             UpdateManually();
         }
     }
+
+    private void OnEnable()
+    {
+        _pathTool           =  (PathSceneTool)target;
+        _pathTool.Destroyed += Unsubscribe;
+
+        Subscribe();
+        TriggerUpdate();
+    }
+
+    #endregion
+
+    #region Logics
 
     private void HandleChange()
     {
@@ -62,15 +77,6 @@ public class PathSceneToolEditor : Editor
         }
     }
 
-    private void OnEnable()
-    {
-        _pathTool           =  (PathSceneTool)target;
-        _pathTool.Destroyed += Unsubscribe;
-
-        Subscribe();
-        TriggerUpdate();
-    }
-
     private void Unsubscribe()
     {
         if (_isSubscribed && _pathTool != null)
@@ -88,4 +94,6 @@ public class PathSceneToolEditor : Editor
             _pathTool.PathCreator.pathUpdated += UpdateAutomatically;
         }
     }
+
+    #endregion
 }
