@@ -14,27 +14,32 @@ public class PathSceneToolEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        using (var check = new EditorGUI.ChangeCheckScope())
-        {
-            DrawDefaultInspector();
-
-            if (check.changed)
-            {
-                if (_isSubscribed == false)
-                {
-                    Subscribe();
-                }
-
-                if (_pathTool.AutoUpdate)
-                {
-                    TriggerUpdate();
-                }
-            }
-        }
-
+        DrawDefaultInspector();
+        HandleChange();
+        
         if (GUILayout.Button("Manual Update"))
         {
             UpdateManually();
+        }
+    }
+
+    private void HandleChange()
+    {
+        using var check = new EditorGUI.ChangeCheckScope();
+        
+        if (check.changed == false)
+        {
+            return; 
+        }
+            
+        if (_isSubscribed == false)
+        {
+            Subscribe();
+        }
+
+        if (_pathTool.AutoUpdate)
+        {
+            TriggerUpdate();
         }
     }
 
@@ -49,7 +54,7 @@ public class PathSceneToolEditor : Editor
     private bool TriggerUpdate()
     {
         var canUpdate = _pathTool.PathCreator != null;
-        
+
         if (canUpdate)
         {
             _pathTool.TriggerUpdate();
