@@ -71,13 +71,13 @@ public class PathSceneToolEditor : Editor
     private void OnEnable()
     {
         _pathTool           =  (PathSceneTool)target;
-        _pathTool.Destroyed += OnToolDestroyed;
+        _pathTool.Destroyed += Unsubscribe;
 
         Subscribe();
         TriggerUpdate();
     }
 
-    private void OnToolDestroyed()
+    private void Unsubscribe()
     {
         if (_pathTool != null)
         {
