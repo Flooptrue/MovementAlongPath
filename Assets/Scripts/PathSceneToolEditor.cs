@@ -37,10 +37,7 @@ public class PathSceneToolEditor : Editor
             Subscribe();
         }
 
-        if (_pathTool.AutoUpdate)
-        {
-            TriggerUpdate();
-        }
+        UpdateAutomatically();
     }
 
     private void UpdateManually()
@@ -63,7 +60,7 @@ public class PathSceneToolEditor : Editor
         return canUpdate;
     }
 
-    private void OnPathModified()
+    private void UpdateAutomatically()
     {
         if (_pathTool.AutoUpdate)
         {
@@ -87,7 +84,7 @@ public class PathSceneToolEditor : Editor
     {
         if (_pathTool != null)
         {
-            _pathTool.PathCreator.pathUpdated -= OnPathModified;
+            _pathTool.PathCreator.pathUpdated -= UpdateAutomatically;
         }
     }
 
@@ -96,8 +93,8 @@ public class PathSceneToolEditor : Editor
         if (_pathTool.PathCreator != null)
         {
             _isSubscribed                     =  true;
-            _pathTool.PathCreator.pathUpdated -= OnPathModified;
-            _pathTool.PathCreator.pathUpdated += OnPathModified;
+            _pathTool.PathCreator.pathUpdated -= UpdateAutomatically;
+            _pathTool.PathCreator.pathUpdated += UpdateAutomatically;
         }
     }
 }
