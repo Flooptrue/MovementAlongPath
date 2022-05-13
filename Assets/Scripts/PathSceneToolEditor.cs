@@ -79,9 +79,10 @@ public class PathSceneToolEditor : Editor
 
     private void Unsubscribe()
     {
-        if (_pathTool != null)
+        if (_isSubscribed && _pathTool != null)
         {
             _pathTool.PathCreator.pathUpdated -= UpdateAutomatically;
+            _isSubscribed                     =  false;
         }
     }
 
