@@ -5,17 +5,10 @@ using UnityEngine;
 [ExecuteInEditMode]
 public abstract class PathSceneTool : MonoBehaviour
 {
-    #region SerializeFields
-
-    [SerializeField] protected PathCreator _pathCreator;
-    [SerializeField] protected bool        _autoUpdate = true;
-
-    #endregion
-    
     #region PublicAPI
 
     public event Action Destroyed;
-    
+
     public void TriggerUpdate()
     {
         PathUpdated();
@@ -25,14 +18,15 @@ public abstract class PathSceneTool : MonoBehaviour
 
     #region Logics
 
-    protected VertexPath path => _pathCreator.path;
-    
+    public PathCreator PathCreator;
+
+    public bool AutoUpdate = true;
+
+    protected VertexPath Path => PathCreator.path;
+
     protected virtual void OnDestroy()
     {
-        if (Destroyed != null)
-        {
-            Destroyed();
-        }
+        Destroyed?.Invoke();
     }
 
     protected abstract void PathUpdated();

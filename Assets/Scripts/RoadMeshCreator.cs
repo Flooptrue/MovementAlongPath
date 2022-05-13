@@ -36,7 +36,7 @@ public class RoadMeshCreator : PathSceneTool
 
     protected override void PathUpdated()
     {
-        if (_pathCreator != null)
+        if (PathCreator != null)
         {
             AssignMeshComponents();
             AssignMaterials();
@@ -50,11 +50,11 @@ public class RoadMeshCreator : PathSceneTool
 
     private void CreateRoadMesh()
     {
-        Vector3[] verts   = new Vector3[path.NumPoints * 8];
+        Vector3[] verts   = new Vector3[Path.NumPoints * 8];
         Vector2[] uvs     = new Vector2[verts.Length];
         Vector3[] normals = new Vector3[verts.Length];
 
-        int   numTris             = 2 * (path.NumPoints - 1) + ((path.isClosedLoop) ? 2 : 0);
+        int   numTris             = 2 * (Path.NumPoints - 1) + ((Path.isClosedLoop) ? 2 : 0);
         int[] roadTriangles       = new int[numTris * 3];
         int[] underRoadTriangles  = new int[numTris * 3];
         int[] sideOfRoadTriangles = new int[numTris * 2 * 3];
@@ -69,16 +69,16 @@ public class RoadMeshCreator : PathSceneTool
         int[] triangleMap      = { 0, 8, 1, 1, 8, 9 };
         int[] sidesTriangleMap = { 4, 6, 14, 12, 4, 14, 5, 15, 7, 13, 15, 5 };
 
-        bool usePathNormals = !(path.space == PathSpace.xyz && _flattenSurface);
+        bool usePathNormals = !(Path.space == PathSpace.xyz && _flattenSurface);
 
-        for (int i = 0; i < path.NumPoints; i++)
+        for (int i = 0; i < Path.NumPoints; i++)
         {
-            Vector3 localUp    = (usePathNormals) ? Vector3.Cross(path.GetTangent(i), path.GetNormal(i)) : path.up;
-            Vector3 localRight = (usePathNormals) ? path.GetNormal(i) : Vector3.Cross(localUp, path.GetTangent(i));
+            Vector3 localUp    = (usePathNormals) ? Vector3.Cross(Path.GetTangent(i), Path.GetNormal(i)) : Path.up;
+            Vector3 localRight = (usePathNormals) ? Path.GetNormal(i) : Vector3.Cross(localUp, Path.GetTangent(i));
 
             // Find position to left and right of current path vertex
-            Vector3 vertSideA = path.GetPoint(i) - localRight * Mathf.Abs(_roadWidth);
-            Vector3 vertSideB = path.GetPoint(i) + localRight * Mathf.Abs(_roadWidth);
+            Vector3 vertSideA = Path.GetPoint(i) - localRight * Mathf.Abs(_roadWidth);
+            Vector3 vertSideB = Path.GetPoint(i) + localRight * Mathf.Abs(_roadWidth);
 
             // Add top of road vertices
             verts[vertIndex + 0] = vertSideA;
@@ -94,8 +94,8 @@ public class RoadMeshCreator : PathSceneTool
             verts[vertIndex + 7] = verts[vertIndex + 3];
 
             // Set uv on y axis to path time (0 at start of path, up to 1 at end of path)
-            uvs[vertIndex + 0] = new Vector2(0, path.times[i]);
-            uvs[vertIndex + 1] = new Vector2(1, path.times[i]);
+            uvs[vertIndex + 0] = new Vector2(0, Path.times[i]);
+            uvs[vertIndex + 1] = new Vector2(1, Path.times[i]);
 
             // Top of road normals
             normals[vertIndex + 0] = localUp;
@@ -110,7 +110,7 @@ public class RoadMeshCreator : PathSceneTool
             normals[vertIndex + 7] = localRight;
 
             // Set triangle indices
-            if (i < path.NumPoints - 1 || path.isClosedLoop)
+            if (i < Path.NumPoints - 1 || Path.isClosedLoop)
             {
                 for (int j = 0; j < triangleMap.Length; j++)
                 {
