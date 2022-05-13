@@ -34,20 +34,28 @@ public class PathSceneToolEditor : Editor
 
         if (GUILayout.Button("Manual Update"))
         {
-            if (_pathTool.PathCreator != null)
-            {
-                TriggerUpdate();
-                SceneView.RepaintAll();
-            }
+            UpdateManually();
         }
     }
 
-    private void TriggerUpdate()
+    private void UpdateManually()
     {
-        if (_pathTool.PathCreator != null)
+        if (TriggerUpdate())
+        {
+            SceneView.RepaintAll();
+        }
+    }
+
+    private bool TriggerUpdate()
+    {
+        var canUpdate = _pathTool.PathCreator != null;
+        
+        if (canUpdate)
         {
             _pathTool.TriggerUpdate();
         }
+
+        return canUpdate;
     }
 
     private void OnPathModified()
