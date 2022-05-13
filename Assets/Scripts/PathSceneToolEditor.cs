@@ -26,8 +26,7 @@ public class PathSceneToolEditor : Editor
 
     private void OnEnable()
     {
-        _pathTool           =  (PathSceneTool)target;
-        _pathTool.Destroyed += Unsubscribe;
+        _pathTool = (PathSceneTool)target;
 
         Subscribe();
         TriggerUpdate();
@@ -91,6 +90,7 @@ public class PathSceneToolEditor : Editor
         {
             _isSubscribed                     =  true;
             _pathTool.PathCreator.pathUpdated += UpdateAutomatically;
+            _pathTool.Destroyed               += Unsubscribe;
         }
     }
 
