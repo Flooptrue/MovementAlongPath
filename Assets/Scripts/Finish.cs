@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Finish : MonoBehaviour
 {
-    private void OnCollisionEnter()
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Finish!");
     }
