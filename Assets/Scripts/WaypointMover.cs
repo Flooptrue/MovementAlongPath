@@ -8,8 +8,12 @@ public class WaypointMover : MonoBehaviour
 
     private Transform _target;
 
+    public bool IsManualControl { get; set; }
+
     private void Start()
     {
+        IsManualControl = true;
+        
         _target = _waypoints.GetNext(_target);
         transform.position = _target.position;
 
@@ -19,7 +23,7 @@ public class WaypointMover : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) == false)
+        if (Input.GetMouseButton(0) == false && IsManualControl)
         {
             return;
         }

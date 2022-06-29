@@ -4,6 +4,7 @@ public class Finish : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Finish!");
+        var player = other.attachedRigidbody.GetComponent<WaypointMover>();
+        player.IsManualControl = false;
     }
 }
