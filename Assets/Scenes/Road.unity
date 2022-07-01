@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 231772958}
   - component: {fileID: 231772961}
   - component: {fileID: 231772960}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 298267045}
   - component: {fileID: 298267044}
   - component: {fileID: 298267043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 1116165230}
   - component: {fileID: 1116165232}
   - component: {fileID: 1116165231}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WaypointMover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
