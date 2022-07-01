@@ -13,8 +13,12 @@ public class WaypointMover : MonoBehaviour
     private void Start()
     {
         IsManualControl = true;
-        
-        _target = _waypoints.GetNext(_target);
+        MoveToStart();
+    }
+
+    public void MoveToStart()
+    {
+        _target            = _waypoints.GetNext(null);
         transform.position = _target.position;
 
         _target = _waypoints.GetNext(_target);
