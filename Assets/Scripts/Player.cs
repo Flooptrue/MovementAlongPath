@@ -20,6 +20,22 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Difficulty"))
         {
             _mover.MoveToStart();
+            return;
+        }
+
+        if (other.TryGetComponent<Recipient>(out var recipient))
+        {
+            var number = recipient.Number;
+            if (_items < number)
+            {
+                _items = 0;
+            }
+            else
+            {
+                _items -= number;
+            }
+
+            return;
         }
     }
 }
