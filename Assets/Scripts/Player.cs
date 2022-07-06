@@ -4,12 +4,13 @@ public class Player : MonoBehaviour
 {
     private WaypointMover _mover;
     private byte          _items;
-    private byte          _deliveredItems;
 
     private void Awake()
     {
         _mover = GetComponent<WaypointMover>();
     }
+
+    public byte DeliveredItems { get; private set; }
 
     public void AddItem()
     {
@@ -29,8 +30,8 @@ public class Player : MonoBehaviour
             var requiredNumber  = recipient.Number;
             var deliveredNumber = _items < requiredNumber ? _items : requiredNumber;
 
-            _items          -= deliveredNumber;
-            _deliveredItems += deliveredNumber;
+            _items         -= deliveredNumber;
+            DeliveredItems += deliveredNumber;
 
             return;
         }
