@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Finish : MonoBehaviour
 {
-    [SerializeField] private float _reward;
+    [SerializeField] private int _reward;
 
     private void OnTriggerEnter(Collider other)
     {
