@@ -6,7 +6,10 @@ public class Finish : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.attachedRigidbody.GetComponent<WaypointMover>();
-        player.IsManualControl = false;
+        var mover = other.attachedRigidbody.GetComponent<WaypointMover>();
+        mover.IsManualControl = false;
+        
+        var player      = other.attachedRigidbody.GetComponent<Player>();
+        var totalReward = player.DeliveredItems * _reward;
     }
 }
