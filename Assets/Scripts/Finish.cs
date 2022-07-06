@@ -8,8 +8,8 @@ public class Finish : MonoBehaviour
     {
         var mover = other.attachedRigidbody.GetComponent<WaypointMover>();
         mover.IsManualControl = false;
-        
-        var player      = other.attachedRigidbody.GetComponent<Player>();
-        var totalReward = player.DeliveredItems * _reward;
+
+        var player = other.attachedRigidbody.GetComponent<Player>();
+        Money.Amount += player.DeliveredItems * _reward;
     }
 }
