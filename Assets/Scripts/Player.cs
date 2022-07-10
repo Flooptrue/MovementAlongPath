@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Difficulty"))
         {
             _mover.MoveToStart();
+            _items         = 0;
+            DeliveredItems = 0;
             return;
         }
 
