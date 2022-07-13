@@ -2,13 +2,21 @@
 
 public class WaypointMover : MonoBehaviour
 {
+    #region SerializeFields
+
     [SerializeField] private Waypoints _waypoints;
-    [SerializeField] private float _threshold;
-    [SerializeField] private float _speed;
+    [SerializeField] private float     _threshold;
+    [SerializeField] private float     _speed;
 
-    private Transform _target;
+    #endregion
 
-    public bool IsManualControl { get; set; }
+    #region Refs
+
+    private Waypoint _target;
+
+    #endregion
+
+    #region Construction
 
     private void Start()
     {
@@ -16,14 +24,24 @@ public class WaypointMover : MonoBehaviour
         MoveToStart();
     }
 
+    #endregion
+    
+    #region Public API
+
+    public bool IsManualControl { get; set; }
+
     public void MoveToStart()
     {
         _target            = _waypoints.GetNext(null);
-        transform.position = _target.position;
+        transform.position = _target.Position;
 
         _target = _waypoints.GetNext(_target);
-        transform.LookAt(_target);
+        transform.LookAt(_target.transform);
     }
+
+    #endregion
+
+    #region Logics
 
     private void Update()
     {
@@ -31,17 +49,19 @@ public class WaypointMover : MonoBehaviour
         {
             return;
         }
-        
+
         var current = transform.position;
-        var target = _target.position;
-        var delta = _speed * Time.deltaTime;
+        var target  = _target.Position;
+        var delta   = _speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(current, target, delta);
 
         if (Vector3.Distance(current, target) < _threshold && _waypoints.IsLast(_target) == false)
         {
             _target = _waypoints.GetNext(_target);
-            transform.LookAt(_target);
+            transform.LookAt(_target.transform);
         }
     }
+
+    #endregion
 }

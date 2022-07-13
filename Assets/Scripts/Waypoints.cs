@@ -2,55 +2,82 @@ using UnityEngine;
 
 public class Waypoints : MonoBehaviour
 {
-    public Transform GetNext(Transform current)
+    #region Refs
+
+    private BitOfRoad[] _bitsOfRoads;
+
+    #endregion
+
+    #region Construction
+
+    private void Awake()
     {
-        if (current == null)
-        {
-            return transform.GetChild(0).GetChild(0);
-        }
-
-        var bitOfRoad = current.parent;
-        var siblingIndex = current.GetSiblingIndex();
-
-        if (siblingIndex < bitOfRoad.childCount - 1)
-        {
-            var nextIndex = siblingIndex + 1;
-            return bitOfRoad.GetChild(nextIndex);
-        }
-
-        var bitOfRoadIndex = bitOfRoad.GetSiblingIndex();
-        if (bitOfRoadIndex < transform.childCount - 1)
-        {
-            var nextIndex = bitOfRoadIndex + 1;
-            return transform.GetChild(nextIndex).GetChild(1);
-        }
-
-        return current;
-    }
-
-    public bool IsLast(Transform waypoint)
-    {
-        var bitOfRoad = waypoint.parent;
-        var isLastBit = bitOfRoad.GetSiblingIndex() == transform.childCount - 1;
-        var isLastWaypoint = waypoint.GetSiblingIndex() == bitOfRoad.childCount - 1;
-
-        return isLastBit && isLastWaypoint;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
+        _bitsOfRoads = new BitOfRoad[Size];
         for (var i = 0; i < transform.childCount; i++)
         {
-            var bitOfRoad = transform.GetChild(i);
-
-            for (var j = 0; j < bitOfRoad.childCount - 1; j++)
-            {
-                var current = bitOfRoad.GetChild(j).position;
-                var next = bitOfRoad.GetChild(j + 1).position;
-
-                Gizmos.DrawLine(current, next);
-            }
+            var bitOfRoadTransform = transform.GetChild(i);
+            var bitOfRoad          = bitOfRoadTransform.GetComponent<BitOfRoad>();
+            _bitsOfRoads[i] = bitOfRoad;
         }
     }
+
+    #endregion
+
+    #region Public API
+
+    public Waypoint GetNext(Waypoint currentWaypoint)
+    {
+        if (currentWaypoint == null)
+        {
+            return _bitsOfRoads[0].GetPoint(0);
+        }
+
+        var currentBitOfRoad = currentWaypoint.BitOfRoad;
+
+        if (currentBitOfRoad.IsLastPoint(currentWaypoint) == false)
+        {
+            return currentBitOfRoad.GetNextPoint(currentWaypoint);
+        }
+
+        if (IsLastBitOfRoad(currentBitOfRoad) == false)
+        {
+            var nextBitOfRoad = GetNextBitOfRoad(currentBitOfRoad);
+
+            return nextBitOfRoad.GetPoint(1);
+        }
+
+        return currentWaypoint;
+    }
+
+    public bool IsLast(Waypoint waypoint)
+    {
+        var bitOfRoad = waypoint.BitOfRoad;
+
+        return IsLastBitOfRoad(bitOfRoad) && bitOfRoad.IsLastPoint(waypoint);
+    }
+
+    #endregion
+
+    #region Logics
+
+    private BitOfRoad GetNextBitOfRoad(BitOfRoad bitOfRoad)
+    {
+        for (var i = 0; i < _bitsOfRoads.Length; i++)
+        {
+            if (bitOfRoad != _bitsOfRoads[i])
+            {
+                continue;
+            }
+
+            return _bitsOfRoads[i + 1];
+        }
+
+        return bitOfRoad;
+    }
+
+    private bool IsLastBitOfRoad(Object bitOfRoad) => bitOfRoad == _bitsOfRoads[Size - 1];
+
+    private int Size => transform.childCount;
+
+    #endregion
 }
