@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0439ccf7d8e6427e9e79adf8271c38b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypoints: {fileID: 1453620040}
+  _road: {fileID: 1453620040}
   _threshold: 0.001
   _speed: 10
 --- !u!54 &1116165231

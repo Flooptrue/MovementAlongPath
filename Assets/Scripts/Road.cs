@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Waypoints : MonoBehaviour
+public class Road : MonoBehaviour
 {
     #region Refs
 

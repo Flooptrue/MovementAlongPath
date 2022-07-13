@@ -4,9 +4,9 @@ public class WaypointMover : MonoBehaviour
 {
     #region SerializeFields
 
-    [SerializeField] private Waypoints _waypoints;
-    [SerializeField] private float     _threshold;
-    [SerializeField] private float     _speed;
+    [SerializeField] private Road  _road;
+    [SerializeField] private float _threshold;
+    [SerializeField] private float _speed;
 
     #endregion
 
@@ -25,17 +25,17 @@ public class WaypointMover : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Public API
 
     public bool IsManualControl { get; set; }
 
     public void MoveToStart()
     {
-        _target            = _waypoints.GetNext(null);
+        _target            = _road.GetNext(null);
         transform.position = _target.Position;
 
-        _target = _waypoints.GetNext(_target);
+        _target = _road.GetNext(_target);
         transform.LookAt(_target.transform);
     }
 
@@ -56,9 +56,9 @@ public class WaypointMover : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(current, target, delta);
 
-        if (Vector3.Distance(current, target) < _threshold && _waypoints.IsLast(_target) == false)
+        if (Vector3.Distance(current, target) < _threshold && _road.IsLast(_target) == false)
         {
-            _target = _waypoints.GetNext(_target);
+            _target = _road.GetNext(_target);
             transform.LookAt(_target.transform);
         }
     }
