@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 6689931395358389209}
   - component: {fileID: 8877613430496888595}
   m_Layer: 0
-  m_Name: RoadCircuit.Straight
+  m_Name: RoadCircuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

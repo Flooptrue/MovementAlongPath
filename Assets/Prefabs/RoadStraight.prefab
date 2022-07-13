@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8033419787152149672}
   - component: {fileID: 5231080441227556962}
   m_Layer: 0
-  m_Name: StraightRoad.Straight
+  m_Name: RoadStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
