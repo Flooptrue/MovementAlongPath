@@ -6,6 +6,12 @@ public class BitOfRoad : MonoBehaviour
 
     [SerializeField] private Direction _direction;
 
+
+    [Header("Gizmos"), SerializeField] private Color _color;
+    [SerializeField]                   private float _arrowheadAngle;
+    [SerializeField]                   private float _arrowheadDistance;
+    [SerializeField]                   private float _arrowheadLength;
+
     #endregion
 
     #region Refs
@@ -67,6 +73,21 @@ public class BitOfRoad : MonoBehaviour
     private int Size => transform.childCount;
 
     private bool IsSameDirection() => _direction == Direction.Same;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = _color;
+
+        for (var i = 0; i < Size - 1; i++)
+        {
+            var current  = transform.GetChild(i);
+            var next     = transform.GetChild(i + 1);
+            var distance = IsSameDirection() ? 1 - _arrowheadDistance : _arrowheadDistance;
+            var length   = IsSameDirection() ? _arrowheadLength : -_arrowheadLength;
+
+            ArrowGizmos.Draw2D(current.position, next.position, _arrowheadAngle, distance, length);
+        }
+    }
 
     #endregion
 

@@ -187,3 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 0
+  _color: {r: 0.29475534, g: 0.21052866, b: 0.7830189, a: 1}
+  _arrowheadAngle: 120
+  _arrowheadDistance: 0
+  _arrowheadLength: 0.1

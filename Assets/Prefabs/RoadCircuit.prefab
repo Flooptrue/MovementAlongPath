@@ -642,6 +642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 0
+  _color: {r: 0.29411766, g: 0.21176471, b: 0.78431374, a: 1}
+  _arrowheadAngle: 120
+  _arrowheadDistance: 0
+  _arrowheadLength: 0.1
 --- !u!1 &7053557326262229118
 GameObject:
   m_ObjectHideFlags: 0
