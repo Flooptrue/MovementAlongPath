@@ -19,7 +19,7 @@ public class BitOfRoad : MonoBehaviour
     private void Awake()
     {
         _points = new Waypoint[Size];
-        for (var i = 0; i < transform.childCount; i++)
+        for (var i = 0; i < Size; i++)
         {
             var pointTransform = transform.GetChild(i);
             var point          = pointTransform.GetComponent<Waypoint>();
