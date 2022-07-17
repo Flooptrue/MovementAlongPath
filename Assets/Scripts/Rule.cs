@@ -43,6 +43,10 @@ public class Rule : MonoBehaviour
 
     private Vector3 FindPoint(float distance)
     {
-        return Vector3.zero;
+        var vectorBetweenPoints = _points[1].position - _points[0].position;
+        var direction           = Vector3.Normalize(vectorBetweenPoints);
+        var point               = direction * distance;
+
+        return point;
     }
 }
