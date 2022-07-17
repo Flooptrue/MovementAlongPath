@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Rule : MonoBehaviour
 {
+    [SerializeField] private float _distance;
+
     private Transform[] _points;
 
     private void Awake()
@@ -18,7 +20,8 @@ public class Rule : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            PrintDistance();
+            var point = FindPoint(_distance);
+            Debug.Log(point);
         }
     }
 
@@ -36,5 +39,10 @@ public class Rule : MonoBehaviour
 
         message.Insert(0, $"TotalDistance {totalDistance}\n");
         Debug.Log(message);
+    }
+
+    private Vector3 FindPoint(float distance)
+    {
+        return Vector3.zero;
     }
 }
