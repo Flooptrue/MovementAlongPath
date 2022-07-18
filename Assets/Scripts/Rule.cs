@@ -20,7 +20,7 @@ public class Rule : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            var point = FindPoint(_distance);
+            var point = FindPoint();
             Debug.Log(point);
         }
     }
@@ -41,11 +41,11 @@ public class Rule : MonoBehaviour
         Debug.Log(message);
     }
 
-    private Vector3 FindPoint(float distance)
+    private Vector3 FindPoint()
     {
         var vectorBetweenPoints = _points[1].position - _points[0].position;
         var direction           = Vector3.Normalize(vectorBetweenPoints);
-        var point               = direction * distance;
+        var point               = direction * _distance;
 
         return point;
     }
