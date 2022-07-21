@@ -1,6 +1,6 @@
-using System.Text;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Rule : MonoBehaviour
 {
     [SerializeField] private float _distance;
