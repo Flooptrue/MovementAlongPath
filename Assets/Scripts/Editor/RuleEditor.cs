@@ -15,9 +15,10 @@ public class RuleEditor : Editor
     {
         DrawDefaultInspector();
 
+        var rule = (Rule)target;
         if (GUILayout.Button("Spawn"))
         {
-            Debug.Log("Spawn");
+            var point = rule.FindPoint();
         }
     }
 }
