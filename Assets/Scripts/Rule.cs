@@ -56,4 +56,10 @@ public class Rule : MonoBehaviour
 
         return _points[^1].transform.position;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(FindPoint(), 0.1f);
+    }
 }
