@@ -18,7 +18,7 @@ public class Rule : MonoBehaviour
         }
     }
 
-    private Vector3 FindPoint()
+    public Vector3 FindPoint()
     {
         if (_points.Length == 0)
         {
