@@ -7,7 +7,7 @@ public class Rule : MonoBehaviour
 
     private Waypoint[] _points;
 
-    private void Awake()
+    private void Update()
     {
         _points = GetComponentsInChildren<Waypoint>();
 
