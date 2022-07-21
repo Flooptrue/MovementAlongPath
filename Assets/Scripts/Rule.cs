@@ -5,15 +5,11 @@ public class Rule : MonoBehaviour
 {
     [SerializeField] private float _distance;
 
-    private Transform[] _points;
+    private Waypoint[] _points;
 
     private void Awake()
     {
-        _points = new Transform[transform.childCount];
-        for (var i = 0; i < _points.Length; i++)
-        {
-            _points[i] = transform.GetChild(i);
-        }
+        _points = GetComponentsInChildren<Waypoint>();
 
         if (_points.Length == 0)
         {
@@ -32,15 +28,15 @@ public class Rule : MonoBehaviour
         if (_distance < 0)
         {
             Debug.LogError("Distance cannot be less then zero!");
-            return _points[0].position;
+            return _points[0].transform.position;
         }
 
         var restOfDistance = _distance;
 
         for (var i = 0; i < _points.Length - 1; i++)
         {
-            var firstPosition  = _points[i].position;
-            var secondPosition = _points[i + 1].position;
+            var firstPosition  = _points[i].transform.position;
+            var secondPosition = _points[i + 1].transform.position;
 
             var vectorBetweenPoints   = secondPosition - firstPosition;
             var distanceBetweenPoints = vectorBetweenPoints.magnitude;
@@ -56,6 +52,6 @@ public class Rule : MonoBehaviour
             restOfDistance -= distanceBetweenPoints;
         }
 
-        return _points[^1].position;
+        return _points[^1].transform.position;
     }
 }
