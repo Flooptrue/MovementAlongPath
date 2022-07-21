@@ -3,7 +3,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Rule : MonoBehaviour
 {
-    [SerializeField] private float _distance;
+    [SerializeField] private float      _distance;
+    [SerializeField] private GameObject _sample;
 
     private Waypoint[] _points;
 

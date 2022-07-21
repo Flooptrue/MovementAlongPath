@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distance: 1
+  _sample: {fileID: 2872114785576576805, guid: c931d29e02ced234dbe11a95b88c6d37, type: 3}
 --- !u!1 &317669445
 GameObject:
   m_ObjectHideFlags: 0
