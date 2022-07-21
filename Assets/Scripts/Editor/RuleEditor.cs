@@ -19,6 +19,7 @@ public class RuleEditor : Editor
         if (GUILayout.Button("Spawn"))
         {
             var point = rule.FindPoint();
+            Instantiate(_sample.objectReferenceValue, point, Quaternion.identity);
         }
     }
 }
