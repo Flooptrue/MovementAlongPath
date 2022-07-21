@@ -5,6 +5,7 @@ public class Rule : MonoBehaviour
 {
     [SerializeField] private float      _distance;
     [SerializeField] private GameObject _sample;
+    [SerializeField] private Transform  _container;
 
     private Waypoint[] _points;
 

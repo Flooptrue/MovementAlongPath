@@ -5,10 +5,12 @@ using UnityEngine;
 public class RuleEditor : Editor
 {
     private SerializedProperty _sample;
+    private SerializedProperty _container;
 
     private void OnEnable()
     {
-        _sample = serializedObject.FindProperty("_sample");
+        _sample    = serializedObject.FindProperty("_sample");
+        _container = serializedObject.FindProperty("_container");
     }
 
     public override void OnInspectorGUI()
@@ -18,8 +20,9 @@ public class RuleEditor : Editor
         var rule = (Rule)target;
         if (GUILayout.Button("Spawn"))
         {
-            var point = rule.FindPoint();
-            Instantiate(_sample.objectReferenceValue, point, Quaternion.identity);
+            var point     = rule.FindPoint();
+            var container = (Transform)_container.objectReferenceValue;
+            Instantiate(_sample.objectReferenceValue, point, Quaternion.identity, container);
         }
     }
 }
