@@ -29,6 +29,7 @@ public class Rule : MonoBehaviour
         if (_distance < 0)
         {
             Debug.LogError("Distance cannot be less then zero!");
+            _distance = 0;
             return _points[0].transform.position;
         }
 
