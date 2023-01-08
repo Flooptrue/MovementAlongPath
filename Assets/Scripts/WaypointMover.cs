@@ -30,6 +30,8 @@ public class WaypointMover : MonoBehaviour
 
     public bool IsManualControl { get; set; }
 
+    public bool IsMoving { get; set; }
+
     public void MoveToStart()
     {
         _target            = _road.GetNext(null);
@@ -45,7 +47,9 @@ public class WaypointMover : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) == false && IsManualControl)
+        IsMoving = IsManualControl == false || Input.GetMouseButton(0);
+
+        if (IsMoving == false)
         {
             return;
         }
