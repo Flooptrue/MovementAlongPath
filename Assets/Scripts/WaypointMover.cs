@@ -54,17 +54,23 @@ public class WaypointMover : MonoBehaviour
             return;
         }
 
-        var current = transform.position;
-        var target  = _target.Position;
-        var delta   = _speed * Time.deltaTime;
+        transform.position = CalculatePosition();
 
-        transform.position = Vector3.MoveTowards(current, target, delta);
-
-        if (Vector3.Distance(current, target) < _threshold && _road.IsLast(_target) == false)
+        if (Vector3.Distance(transform.position, _target.Position) < _threshold && _road.IsLast(_target) == false)
         {
             _target = _road.GetNext(_target);
             transform.LookAt(_target.transform);
         }
+    }
+
+    private Vector3 CalculatePosition()
+    {
+        var current     = transform.position;
+        var target      = _target.Position;
+        var delta       = _speed * Time.deltaTime;
+        var newPosition = Vector3.MoveTowards(current, target, delta);
+
+        return newPosition;
     }
 
     #endregion
