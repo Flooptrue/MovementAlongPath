@@ -7,6 +7,7 @@ public class WaypointMover : MonoBehaviour
     [SerializeField] private Road  _road;
     [SerializeField] private float _threshold;
     [SerializeField] private float _speed;
+    [SerializeField] private float _rotationSpeed;
 
     #endregion
 
@@ -55,12 +56,26 @@ public class WaypointMover : MonoBehaviour
         }
 
         transform.position = CalculatePosition();
+        transform.rotation = CalculateRotation();
 
         if (Vector3.Distance(transform.position, _target.Position) < _threshold && _road.IsLast(_target) == false)
         {
             _target = _road.GetNext(_target);
-            transform.LookAt(_target.transform);
         }
+    }
+
+    private Quaternion CalculateRotation()
+    {
+        var currentTransform = transform;
+        var from             = currentTransform.rotation;
+
+        var direction = _target.transform.position - currentTransform.position;
+        var to        = Quaternion.LookRotation(direction, currentTransform.up);
+
+        var maxDelta    = Time.deltaTime * _rotationSpeed;
+        var newRotation = Quaternion.RotateTowards(from, to, maxDelta);
+
+        return newRotation;
     }
 
     private Vector3 CalculatePosition()

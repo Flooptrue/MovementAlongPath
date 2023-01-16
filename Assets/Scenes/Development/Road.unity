@@ -1404,6 +1404,14 @@ PrefabInstance:
       propertyPath: _road
       value: 
       objectReference: {fileID: 1453620040}
+    - target: {fileID: 1532532446201287556, guid: 7df40319550cbbf409b82dfab698227d, type: 3}
+      propertyPath: _speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532532446201287556, guid: 7df40319550cbbf409b82dfab698227d, type: 3}
+      propertyPath: _rotationSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 1532532446201287559, guid: 7df40319550cbbf409b82dfab698227d, type: 3}
       propertyPath: m_RootOrder
       value: 3
