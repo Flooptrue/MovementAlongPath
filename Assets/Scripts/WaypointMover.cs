@@ -6,7 +6,7 @@ public class WaypointMover : MonoBehaviour
 
     [SerializeField] private Road  _road;
     [SerializeField] private float _threshold;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed;
 
     #endregion
@@ -82,7 +82,7 @@ public class WaypointMover : MonoBehaviour
     {
         var current     = transform.position;
         var target      = _target.Position;
-        var delta       = _speed * Time.deltaTime;
+        var delta       = _moveSpeed * Time.deltaTime;
         var newPosition = Vector3.MoveTowards(current, target, delta);
 
         return newPosition;
