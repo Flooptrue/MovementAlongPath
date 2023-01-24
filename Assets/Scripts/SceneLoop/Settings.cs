@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Scene.Stages;
+using SceneLoop.Stages;
 using UnityEngine;
 
-namespace Scene
+namespace SceneLoop
 {
     [CreateAssetMenu(fileName = "SceneSettings", menuName = "Road/SceneSettings", order = 0)]
     public class Settings : ScriptableObject

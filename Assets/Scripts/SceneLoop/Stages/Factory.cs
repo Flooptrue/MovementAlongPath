@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scene.Stages
+namespace SceneLoop.Stages
 {
     public class Factory
     {

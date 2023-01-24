@@ -1,4 +1,4 @@
-﻿namespace Scene.Stages
+﻿namespace SceneLoop.Stages
 {
     public interface IStage
     {
