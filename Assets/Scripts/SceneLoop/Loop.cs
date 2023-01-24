@@ -7,13 +7,12 @@ namespace SceneLoop
     public class Loop : MonoBehaviour
     {
         [SerializeField] private Settings _settings;
-        
-        private List<IStage> _stages;
-        private IStage       _currentStage;
+
+        private Dictionary<StageType, IStage> _stages;
 
         private void Awake()
         {
-            _stages = new List<IStage>();
+            _stages = new Dictionary<StageType, IStage>();
 
             CreateStages();
         }
@@ -25,7 +24,7 @@ namespace SceneLoop
             foreach (var stageType in _settings.StagesOrder)
             {
                 var stage = factory.Create(stageType);
-                _stages.Add(stage);
+                _stages.Add(stageType, stage);
             }
         }
     }
