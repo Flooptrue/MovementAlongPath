@@ -8,7 +8,7 @@ namespace SceneLoop
     public class Settings : ScriptableObject
     {
         [field: SerializeField]
-        public List<StageType> StagesOrder;
+        public List<StageType> StagesOrder { get; private set; }
         [field: SerializeField]
         public bool ShowLogs { get; private set; }
     }

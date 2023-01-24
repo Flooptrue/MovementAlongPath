@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed9b6f8d4414d1d87950273a4917bb2, type: 3}
   m_Name: SceneSettings
   m_EditorClassIdentifier: 
-  StagesOrder: 000000000100000002000000
+  <StagesOrder>k__BackingField: 000000000100000002000000
+  <ShowLogs>k__BackingField: 0
