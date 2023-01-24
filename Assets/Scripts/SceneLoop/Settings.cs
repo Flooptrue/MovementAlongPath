@@ -9,5 +9,7 @@ namespace SceneLoop
     {
         [field: SerializeField]
         public List<StageType> StagesOrder;
+        [field: SerializeField]
+        public bool ShowLogs { get; private set; }
     }
 }
