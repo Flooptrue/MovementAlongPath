@@ -2,8 +2,8 @@
 {
     public enum StageType
     {
-        Preparation,
-        Game,
-        Termination,
+        Preparation = 0,
+        Game = 1,
+        Termination = 2,
     }
 }
