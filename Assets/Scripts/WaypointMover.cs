@@ -70,8 +70,12 @@ public class WaypointMover : MonoBehaviour
         var from             = currentTransform.rotation;
 
         var direction = _target.transform.position - currentTransform.position;
-        var to        = Quaternion.LookRotation(direction, currentTransform.up);
+        if (direction == Vector3.zero)
+        {
+            return from;
+        }
 
+        var to          = Quaternion.LookRotation(direction, currentTransform.up);
         var maxDelta    = Time.deltaTime * _rotationSpeed;
         var newRotation = Quaternion.RotateTowards(from, to, maxDelta);
 
