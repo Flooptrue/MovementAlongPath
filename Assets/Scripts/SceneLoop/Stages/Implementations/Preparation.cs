@@ -1,6 +1,6 @@
 ﻿namespace Scene.Stages
 {
-    public class Termination : IStage
+    public class Preparation : IStage
     {
         public void Start()
         {
@@ -10,6 +10,6 @@
         {
         }
 
-        public bool IsComplete() => true;
+        public bool IsComplete => true;
     }
 }

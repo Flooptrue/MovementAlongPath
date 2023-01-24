@@ -10,6 +10,6 @@
         {
         }
 
-        public bool IsComplete() => true;
+        public bool IsComplete => true;
     }
 }
