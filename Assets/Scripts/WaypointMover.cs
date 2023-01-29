@@ -90,6 +90,8 @@ public class WaypointMover : MonoBehaviour
         return isPossible;
     }
 
+    private Vector3 Direction => _target.transform.position - transform.position;
+
     private Vector3 CalculatePosition()
     {
         var current     = transform.position;
