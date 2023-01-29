@@ -92,6 +92,8 @@ public class WaypointMover : MonoBehaviour
 
     private Vector3 Direction => _target.transform.position - transform.position;
 
+    private Vector3 DirectionXZ => Direction.RemoveY();
+
     private Vector3 CalculatePosition()
     {
         var current     = transform.position;
