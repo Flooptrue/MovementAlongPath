@@ -69,17 +69,25 @@ public class WaypointMover : MonoBehaviour
         var currentTransform = transform;
         var from             = currentTransform.rotation;
 
-        var direction = _target.transform.position - currentTransform.position;
-        if (direction == Vector3.zero)
+        if (IsRotationPossible())
         {
             return from;
         }
 
+        var direction   = _target.transform.position - currentTransform.position;
         var to          = Quaternion.LookRotation(direction, currentTransform.up);
         var maxDelta    = Time.deltaTime * _rotationSpeed;
         var newRotation = Quaternion.RotateTowards(from, to, maxDelta);
 
         return newRotation;
+    }
+
+    private bool IsRotationPossible()
+    {
+        var direction  = _target.transform.position - transform.position;
+        var isPossible = direction == Vector3.zero;
+
+        return isPossible;
     }
 
     private Vector3 CalculatePosition()
