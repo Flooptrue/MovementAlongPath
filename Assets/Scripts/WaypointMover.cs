@@ -5,13 +5,14 @@ public class WaypointMover : MonoBehaviour
     #region SerializeFields
 
     [SerializeField] private Road  _road;
-    [SerializeField] private float _threshold;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed;
 
     #endregion
 
     #region Refs
+
+    private const float TOLERANCE = 0.001f;
 
     private Waypoint _target;
 
@@ -58,7 +59,7 @@ public class WaypointMover : MonoBehaviour
         transform.position = CalculatePosition();
         transform.rotation = CalculateRotation();
 
-        if (Vector3.Distance(transform.position, _target.Position) < _threshold && _road.IsLast(_target) == false)
+        if (Vector3.Distance(transform.position, _target.Position) < TOLERANCE && _road.IsLast(_target) == false)
         {
             _target = _road.GetNext(_target);
         }
