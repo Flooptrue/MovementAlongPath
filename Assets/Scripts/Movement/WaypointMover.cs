@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Constants;
+using Extensions;
 using UnityEngine;
 
 namespace Movement
@@ -14,8 +15,6 @@ namespace Movement
         #endregion
 
         #region Refs
-
-        private const float TOLERANCE = 0.001f;
 
         private Waypoint _target;
 
@@ -62,7 +61,8 @@ namespace Movement
             transform.position = CalculatePosition();
             transform.rotation = CalculateRotation();
 
-            if (Vector3.Distance(transform.position, _target.Position) < TOLERANCE && _road.IsLast(_target) == false)
+            if (Vector3.Distance(transform.position, _target.Position) < Comparison.TOLERANCE && 
+                _road.IsLast(_target) == false)
             {
                 _target = _road.GetNext(_target);
             }
