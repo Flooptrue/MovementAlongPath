@@ -50,7 +50,7 @@ public class WaypointMover : MonoBehaviour
 
     private void Update()
     {
-        IsMoving = IsManualControl == false || Input.GetMouseButton(0);
+        IsMoving = IsManualControl == false || UnityEngine.Input.GetMouseButton(0);
 
         if (IsMoving == false)
         {
