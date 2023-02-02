@@ -16,7 +16,7 @@ namespace Movement
 
         public bool CanMove(float slopeAngle)
         {
-            return _input && CanWalkOnSlope(slopeAngle);
+            return _input.IsMoving && CanWalkOnSlope(slopeAngle);
         }
 
         private bool CanWalkOnSlope(float slopeAngle)
