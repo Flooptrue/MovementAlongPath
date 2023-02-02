@@ -24,6 +24,7 @@ namespace Movement
         {
             Input      = input;
             Config     = config;
+            Conditions = new Conditions(Input, Config.MaxSlopeAngle);
         }
 
         private void Start()
@@ -56,6 +57,8 @@ namespace Movement
         private Input.Movement Input { get; set; }
 
         private Configs.Movement Config { get; set; }
+
+        private Conditions Conditions { get; set; }
 
         private void Update()
         {
