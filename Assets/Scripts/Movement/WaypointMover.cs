@@ -1,6 +1,7 @@
 ﻿using Constants;
 using Extensions;
 using UnityEngine;
+using Avatar = Movement.Conditions.Avatar;
 
 namespace Movement
 {

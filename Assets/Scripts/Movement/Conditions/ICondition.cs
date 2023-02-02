@@ -1,4 +1,4 @@
-﻿namespace Movement
+﻿namespace Movement.Conditions
 {
     public interface ICondition
     {

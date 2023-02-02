@@ -1,7 +1,7 @@
 ﻿using Constants;
 using UnityEngine;
 
-namespace Movement
+namespace Movement.Conditions
 {
     public class Avatar
     {
