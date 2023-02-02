@@ -8,9 +8,7 @@ namespace Movement
     {
         #region SerializeFields
 
-        [SerializeField] private Road  _road;
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _rotationSpeed;
+        [SerializeField] private Road _road;
 
         #endregion
 
@@ -21,6 +19,12 @@ namespace Movement
         #endregion
 
         #region Construction
+
+        public void Init(Input.Movement input, Configs.Movement config)
+        {
+            Input      = input;
+            Config     = config;
+        }
 
         private void Start()
         {
@@ -48,6 +52,10 @@ namespace Movement
         #endregion
 
         #region Logics
+
+        private Input.Movement Input { get; set; }
+
+        private Configs.Movement Config { get; set; }
 
         private void Update()
         {
@@ -80,7 +88,7 @@ namespace Movement
 
             var direction   = _target.transform.position - currentTransform.position;
             var to          = Quaternion.LookRotation(direction, currentTransform.up);
-            var maxDelta    = Time.deltaTime * _rotationSpeed;
+            var maxDelta    = Time.deltaTime * Config.RotationSpeed;
             var newRotation = Quaternion.RotateTowards(from, to, maxDelta);
 
             return newRotation;
@@ -102,7 +110,7 @@ namespace Movement
         {
             var current     = transform.position;
             var target      = _target.Position;
-            var delta       = _moveSpeed * Time.deltaTime;
+            var delta       = Config.MoveSpeed * Time.deltaTime;
             var newPosition = Vector3.MoveTowards(current, target, delta);
 
             return newPosition;
