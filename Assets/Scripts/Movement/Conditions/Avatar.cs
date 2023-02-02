@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class Conditions
+    public class Avatar
     {
         private readonly Input.Movement _input;
         private readonly float          _maxSlopeAngle;
 
-        public Conditions(Input.Movement input, float maxSlopeAngle)
+        public Avatar(Input.Movement input, float maxSlopeAngle)
         {
             _input         = input;
             _maxSlopeAngle = maxSlopeAngle;
