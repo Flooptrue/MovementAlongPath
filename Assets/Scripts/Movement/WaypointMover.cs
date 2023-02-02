@@ -1,7 +1,7 @@
 ﻿using Constants;
 using Extensions;
+using Movement.Conditions;
 using UnityEngine;
-using Avatar = Movement.Conditions.Avatar;
 
 namespace Movement
 {
@@ -21,7 +21,7 @@ namespace Movement
 
         #region Construction
 
-        public void Init(Input.Movement input, Configs.Movement config, Avatar conditions)
+        public void Init(Input.Movement input, Configs.Movement config, ICondition conditions)
         {
             Input      = input;
             Config     = config;
@@ -59,7 +59,7 @@ namespace Movement
 
         private Configs.Movement Config { get; set; }
 
-        private Avatar Conditions { get; set; }
+        private ICondition Conditions { get; set; }
 
         private void Update()
         {
