@@ -2,6 +2,6 @@
 {
     public interface ICondition
     {
-        public void CanMove();
+        public void CanMove(State state);
     }
 }
