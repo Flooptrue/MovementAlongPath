@@ -20,11 +20,11 @@ namespace Movement
 
         #region Construction
 
-        public void Init(Input.Movement input, Configs.Movement config)
+        public void Init(Input.Movement input, Configs.Movement config, Conditions conditions)
         {
             Input      = input;
             Config     = config;
-            Conditions = new Conditions(Input, Config.MaxSlopeAngle);
+            Conditions = conditions;
         }
 
         private void Start()
