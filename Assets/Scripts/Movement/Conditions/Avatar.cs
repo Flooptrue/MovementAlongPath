@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Movement.Conditions
 {
-    public class Avatar
+    public class Avatar : ICondition
     {
         private readonly Input.Movement _input;
         private readonly float          _maxSlopeAngle;
@@ -14,7 +14,7 @@ namespace Movement.Conditions
             _maxSlopeAngle = maxSlopeAngle;
         }
 
-        public bool CanMove(float slopeAngle)
+        public bool CanMove(State state)
         {
             return _input.IsMoving && CanWalkOnSlope(slopeAngle);
         }
