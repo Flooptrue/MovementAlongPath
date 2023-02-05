@@ -26,10 +26,7 @@ namespace Movement
             Config         = config;
             Condition      = condition;
             WaypointFinder = new WaypointFinder(_road, transform);
-        }
 
-        private void Start()
-        {
             MoveToStart();
         }
 
@@ -41,11 +38,9 @@ namespace Movement
 
         public void MoveToStart()
         {
-            _target            = _road.GetNext(null);
-            transform.position = _target.Position;
-
-            _target = _road.GetNext(_target);
-            transform.LookAt(_target.transform);
+            transform.position = WaypointFinder.TargetPosition;
+            WaypointFinder.Update();
+            transform.LookAt(WaypointFinder.TargetPosition);
         }
 
         #endregion
