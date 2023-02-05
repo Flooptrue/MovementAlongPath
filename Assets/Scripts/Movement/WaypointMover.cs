@@ -21,10 +21,10 @@ namespace Movement
 
         #region Construction
 
-        public void Init(Configs.Movement config, ICondition conditions)
+        public void Init(Configs.Movement config, ICondition condition)
         {
             Config     = config;
-            Conditions = conditions;
+            Condition = condition;
         }
 
         private void Start()
@@ -53,7 +53,7 @@ namespace Movement
 
         private Configs.Movement Config { get; set; }
 
-        private ICondition Conditions { get; set; }
+        private ICondition Condition { get; set; }
 
         private void Update()
         {
