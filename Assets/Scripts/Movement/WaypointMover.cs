@@ -23,8 +23,9 @@ namespace Movement
 
         public void Init(Configs.Movement config, ICondition condition)
         {
-            Config    = config;
-            Condition = condition;
+            Config         = config;
+            Condition      = condition;
+            WaypointFinder = new WaypointFinder(_road, transform);
         }
 
         private void Start()
@@ -54,6 +55,8 @@ namespace Movement
         private Configs.Movement Config { get; set; }
 
         private ICondition Condition { get; set; }
+
+        private WaypointFinder WaypointFinder { get; set; }
 
         private void Update()
         {
