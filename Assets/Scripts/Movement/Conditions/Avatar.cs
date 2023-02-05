@@ -16,12 +16,27 @@ namespace Movement.Conditions
 
         public bool CanMove(State state)
         {
-            return _input.IsMoving && CanWalkOnSlope(slopeAngle);
+            var isMoving       = _input.IsMoving;
+            var canWalkOnSlope = CanWalkOnSlope(state);
+
+            return isMoving && canWalkOnSlope;
         }
 
-        private bool CanWalkOnSlope(float slopeAngle)
+        private bool CanWalkOnSlope(State state)
         {
-            return Mathf.Abs(_maxSlopeAngle - slopeAngle) < Comparison.TOLERANCE;
+            var slopeAngle     = CalculateSlopeAngle(state);
+            var canWalkOnSlope = Mathf.Abs(_maxSlopeAngle - slopeAngle) < Comparison.TOLERANCE;
+
+            return canWalkOnSlope;
+        }
+
+        private static float CalculateSlopeAngle(State state)
+        {
+            var forward         = state.ForwardDirection;
+            var targetDirection = state.Target - state.Position;
+            var slopeAngle      = Vector3.Angle(forward, targetDirection);
+
+            return slopeAngle;
         }
     }
 }
