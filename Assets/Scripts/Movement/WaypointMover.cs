@@ -30,15 +30,12 @@ namespace Movement
 
         private void Start()
         {
-            IsManualControl = true;
             MoveToStart();
         }
 
         #endregion
 
         #region Public API
-
-        public bool IsManualControl { get; set; }
 
         public bool IsMoving { get; set; }
 
@@ -63,7 +60,7 @@ namespace Movement
 
         private void Update()
         {
-            IsMoving = IsManualControl == false || UnityEngine.Input.GetMouseButton(0);
+            IsMoving = UnityEngine.Input.GetMouseButton(0);
 
             if (IsMoving == false)
             {
