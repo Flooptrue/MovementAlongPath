@@ -23,7 +23,7 @@ namespace Movement
 
         public void Init(Configs.Movement config, ICondition condition)
         {
-            Config     = config;
+            Config    = config;
             Condition = condition;
         }
 
@@ -57,9 +57,7 @@ namespace Movement
 
         private void Update()
         {
-            IsMoving = UnityEngine.Input.GetMouseButton(0);
-
-            if (IsMoving == false)
+            if (CanMove() == false)
             {
                 return;
             }
@@ -72,6 +70,19 @@ namespace Movement
             {
                 _target = _road.GetNext(_target);
             }
+        }
+
+        private bool CanMove()
+        {
+            var thisTransform   = transform;
+            var position        = thisTransform.position;
+            var forwardRotation = thisTransform.forward;
+            var target          = _target.Position;
+
+            var state   = new State(position, forwardRotation, target);
+            var canMove = Condition.CanMove(state);
+
+            return canMove;
         }
 
         private Quaternion CalculateRotation()
