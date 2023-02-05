@@ -63,11 +63,7 @@ namespace Movement
             transform.position = CalculatePosition();
             transform.rotation = CalculateRotation();
 
-            if (Vector3.Distance(transform.position, _target.Position) < Comparison.TOLERANCE &&
-                _road.IsLast(_target) == false)
-            {
-                _target = _road.GetNext(_target);
-            }
+            WaypointFinder.Update();
         }
 
         private bool CanMove()
