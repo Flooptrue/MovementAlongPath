@@ -25,7 +25,7 @@ namespace Movement.Conditions
         private bool CanWalkOnSlope(State state)
         {
             var slopeAngle     = CalculateSlopeAngle(state);
-            var canWalkOnSlope = Mathf.Abs(_maxSlopeAngle - slopeAngle) < Comparison.TOLERANCE;
+            var canWalkOnSlope = _maxSlopeAngle - slopeAngle > Comparison.TOLERANCE;
 
             return canWalkOnSlope;
         }
