@@ -21,9 +21,8 @@ namespace Movement
 
         #region Construction
 
-        public void Init(Input.Movement input, Configs.Movement config, ICondition conditions)
+        public void Init(Configs.Movement config, ICondition conditions)
         {
-            Input      = input;
             Config     = config;
             Conditions = conditions;
         }
@@ -51,8 +50,6 @@ namespace Movement
         #endregion
 
         #region Logics
-
-        private Input.Movement Input { get; set; }
 
         private Configs.Movement Config { get; set; }
 
