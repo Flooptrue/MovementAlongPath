@@ -13,12 +13,6 @@ namespace Movement
 
         #endregion
 
-        #region Refs
-
-        private Waypoint _target;
-
-        #endregion
-
         #region Construction
 
         public void Init(Configs.Movement config, ICondition condition)
@@ -71,7 +65,7 @@ namespace Movement
             var thisTransform   = transform;
             var position        = thisTransform.position;
             var forwardRotation = thisTransform.forward;
-            var target          = _target.Position;
+            var target          = WaypointFinder.TargetPosition;
 
             var state   = new State(position, forwardRotation, target);
             var canMove = Condition.CanMove(state);
@@ -89,7 +83,7 @@ namespace Movement
                 return from;
             }
 
-            var direction   = _target.transform.position - currentTransform.position;
+            var direction   = WaypointFinder.TargetPosition - currentTransform.position;
             var to          = Quaternion.LookRotation(direction, currentTransform.up);
             var maxDelta    = Time.deltaTime * Config.RotationSpeed;
             var newRotation = Quaternion.RotateTowards(from, to, maxDelta);
@@ -99,20 +93,20 @@ namespace Movement
 
         private bool IsRotationPossible()
         {
-            var direction  = _target.transform.position - transform.position;
+            var direction  = WaypointFinder.TargetPosition - transform.position;
             var isPossible = direction == Vector3.zero;
 
             return isPossible;
         }
 
-        private Vector3 Direction => _target.transform.position - transform.position;
+        private Vector3 Direction => WaypointFinder.TargetPosition - transform.position;
 
         private Vector3 DirectionXZ => Direction.RemoveY();
 
         private Vector3 CalculatePosition()
         {
             var current     = transform.position;
-            var target      = _target.Position;
+            var target      = WaypointFinder.TargetPosition;
             var delta       = Config.MoveSpeed * Time.deltaTime;
             var newPosition = Vector3.MoveTowards(current, target, delta);
 
