@@ -1,5 +1,4 @@
-﻿using Constants;
-using Extensions;
+﻿using Extensions;
 using Movement.Conditions;
 using UnityEngine;
 
